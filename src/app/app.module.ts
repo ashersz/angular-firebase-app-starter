@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {firebaseConfig } from '../environments/firebase.config'
+import {firebaseConfig, authConfig} from '../environments/firebase.config'
 import { AppComponent } from './app.component';
 import {AngularFireModule} from "angularfire2";
 import { HomeComponent } from './home/home.component';
@@ -23,6 +23,7 @@ import { EditLessonComponent } from './edit-lesson/edit-lesson.component';
 import {LessonResolver} from "./shared/model/lesson.resolver";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {AuthService} from "./shared/security/auth.service";
 
 @NgModule({
   declarations: [
@@ -42,14 +43,15 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, authConfig),
     RouterModule.forRoot(routerConfig),
     ReactiveFormsModule
   ],
   providers: [
     LessonsService,
     CoursesService,
-    LessonResolver
+    LessonResolver,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
