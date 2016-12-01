@@ -24,6 +24,8 @@ import {LessonResolver} from "./shared/model/lesson.resolver";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {AuthService} from "./shared/security/auth.service";
+import {AuthGuard} from "./shared/security/auth.guard";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -45,13 +47,15 @@ import {AuthService} from "./shared/security/auth.service";
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig, authConfig),
     RouterModule.forRoot(routerConfig),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
     LessonsService,
     CoursesService,
     LessonResolver,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

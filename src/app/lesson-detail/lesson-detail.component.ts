@@ -45,6 +45,12 @@ export class LessonDetailComponent implements OnInit {
   navigateToLesson(lesson:Lesson){
     this.router.navigate(['lessons',lesson.url])
   }
-
+  delete() {
+      this.lessonsService.deleteLesson(this.lesson.$key)
+          .subscribe(
+              () => alert('Lesson deleted'),
+              console.error
+          );
+  }
 
 }

@@ -3,11 +3,12 @@ import {Lesson} from "./lesson";
 import {Observable, Subject} from "rxjs";
 import {AngularFire, AngularFireDatabase, FirebaseRef} from "angularfire2";
 import {Http} from "@angular/http";
+import {firebaseConfig} from "../../../environments/firebase.config";
 
 @Injectable()
 export class LessonsService {
   sdkDb:any;
-    constructor(private db:AngularFireDatabase, @Inject(FirebaseRef) fb){
+    constructor(private db:AngularFireDatabase, @Inject(FirebaseRef) fb, private http:Http){
 
 
         this.sdkDb = fb.database().ref();
@@ -95,6 +96,11 @@ export class LessonsService {
         dataToSave['lessons/'+ newLessonKey] = lessonsToSave
         dataToSave[ `lessonsPerCourse/${courseId}/${newLessonKey}`]  = true
         return this.firebaseUpdate(dataToSave);
+    }
+
+    deleteLesson(lessonId:string):Observable<any>{
+          const url = `${firebaseConfig.databaseURL}/lessons/${lessonId}.json`
+        return this.http.delete(url)
     }
 
 }
