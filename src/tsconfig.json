@@ -14,8 +14,8 @@
       "../node_modules/@types"
     ],
     "types": [
-      "node",
-      "firebase"
+      "node"//,
+      //"firebase"
     ]
   }
 }
