@@ -102,5 +102,10 @@ export class LessonsService {
           const url = `${firebaseConfig.databaseURL}/lessons/${lessonId}.json`
         return this.http.delete(url)
     }
-
+    requestLessonDeletion(lessonId:string,courseId:string){
+        this.sdkDb.child('queue/tasks').push({lessonId,courseId})
+            .then(
+                () => alert("deletion request")
+            )
+    }
 }

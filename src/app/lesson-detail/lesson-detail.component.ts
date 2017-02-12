@@ -13,6 +13,7 @@ import * as _ from 'lodash'
 export class LessonDetailComponent implements OnInit {
   lesson:Lesson
 
+
   constructor(private route:ActivatedRoute,
               private router:Router,
               private lessonsService: LessonsService) {
@@ -51,6 +52,9 @@ export class LessonDetailComponent implements OnInit {
               () => alert('Lesson deleted'),
               console.error
           );
+  }
+  requestLessonDeletion() {
+      this.lessonsService.requestLessonDeletion(this.lesson.$key, this.lesson.courseId)
   }
 
 }
